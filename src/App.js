@@ -7,7 +7,7 @@ import { PureInboxScreen } from './components/InboxScreen';
 function App() {
   return (
     <Provider store={store}>
-      <InboxScreen />
+      <PureInboxScreen />
     </Provider>
   );
 }

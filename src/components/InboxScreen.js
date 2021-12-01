@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-import { connect } from 'react-redux';
-
-import TaskList from './TaskList';
+import { PureTaskList } from './TaskList';
 
 export function PureInboxScreen({ error }) {
   if (error) {
@@ -24,7 +23,7 @@ export function PureInboxScreen({ error }) {
           <span className="title-wrapper">Taskbox</span>
         </h1>
       </nav>
-      <TaskList />
+      <PureTaskList />
     </div>
   );
 }
@@ -38,4 +37,9 @@ PureInboxScreen.defaultProps = {
   error: null,
 };
 
-export default connect(({ error }) => ({ error }))(PureInboxScreen);
+export function InboxScreen() {
+  // We're retrieving the error field from our updated store
+  const isError = useSelector(state => state.isError);
+
+  return <PureInboxScreen error={isError} />;
+}
